@@ -14,10 +14,10 @@ namespace BlogCore
     {
         public void NewPost(string title)
         {
-            var ph = new PostHeader(Config.Author, DateTime.Now, title);
+            var ph = new PostHeader(Config.Author, DateTime.UtcNow, title);
             string fileName = GetCleanFileName(title);
             File.WriteAllText(fileName, ph.Serialize());
-            WriteLine($"generated {fileName}");
+            WriteLine($"code ./{fileName}");
         }
 
         public string GetCleanFileName(string title)

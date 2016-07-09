@@ -15,6 +15,20 @@
           }
         }
       },
+      "Markdown/1.14.7": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.11",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Text.RegularExpressions": "4.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/MarkdownSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/MarkdownSharp.dll": {}
+        }
+      },
       "Microsoft.CodeAnalysis.Analyzers/1.1.0": {
         "type": "package"
       },
@@ -2057,6 +2071,17 @@
         "runtimes/win7-arm/native/libuv.dll",
         "runtimes/win7-x64/native/libuv.dll",
         "runtimes/win7-x86/native/libuv.dll"
+      ]
+    },
+    "Markdown/1.14.7": {
+      "sha512": "JimllEJp9qvASuKph9Ggq0d3DLQ08stv0OVnLBxXzuezcPClo7CT1dZuV3336S6RYeg+MUxJbxW52sQfN61Z7Q==",
+      "type": "package",
+      "path": "Markdown/1.14.7",
+      "files": [
+        "Markdown.1.14.7.nupkg.sha512",
+        "Markdown.nuspec",
+        "lib/net45/MarkdownSharp.dll",
+        "lib/netstandard1.3/MarkdownSharp.dll"
       ]
     },
     "Microsoft.CodeAnalysis.Analyzers/1.1.0": {
@@ -6730,6 +6755,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "Markdown >= 1.14.7",
       "Newtonsoft.Json >= 9.0.1"
     ],
     ".NETCoreApp,Version=v1.0": [

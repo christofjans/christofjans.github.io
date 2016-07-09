@@ -1,3 +1,5 @@
+using MarkdownSharp;
+
 namespace BlogCore
 {
     public interface IMarkdownConverter
@@ -7,9 +9,16 @@ namespace BlogCore
 
     public class MarkdownConverter : IMarkdownConverter
     {
+        public MarkdownConverter()
+        {
+            markdown = new Markdown();
+        }
+
         public string Convert(string markdownString)
         {
-            return markdownString;
+            return markdown.Transform(markdownString);
         }
+
+        private Markdown markdown;
     }
 }

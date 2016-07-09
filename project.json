@@ -6,7 +6,8 @@
     "compile": "*.cs"
   },
   "dependencies": {
-    "Newtonsoft.Json": "9.0.1"
+    "Newtonsoft.Json": "9.0.1",
+    "Markdown": "1.14.7"
   },
   "frameworks": {
     "netcoreapp1.0": {

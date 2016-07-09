@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace BlogCore
 {
+    // poor man's dependency injection
     public static class Services
     {
         public static T GetInstance<T>()
