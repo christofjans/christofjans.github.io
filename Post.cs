@@ -10,5 +10,21 @@ namespace BlogCore
             this.Header = postHeader;
             this.HtmlString = htmlString;
         }
+
+        public string FriendlyDate
+        {
+            get
+            {
+                return Header.PubDate.ToString("yyyy-MM-dd");
+            }
+        }
+
+        public string Url
+        {
+            get
+            {
+                return $"{Config.UrlPrefix}/{Header.CleanTitle}";
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace BlogCore
@@ -8,6 +9,31 @@ namespace BlogCore
         public string Author {get;}
         public DateTime PubDate {get;}
         public string Title {get;}
+
+        public string CleanTitle
+        {
+            get
+            {
+                string cleanTitle = Title;
+
+                var replacements = new Dictionary<string, string>()
+                {
+                    [" "] = "_",
+                    ["'"] = "",
+                    ["."] = "",
+                    [","] = "",
+                    ["?"] = "",
+                    ["!"] = "",
+                };
+
+                foreach (var kvp in replacements)
+                {
+                    cleanTitle = cleanTitle.Replace(kvp.Key, kvp.Value);
+                }
+
+                return cleanTitle;
+            }
+        }
 
         public PostHeader(string author, DateTime pubDate, string title)
         {

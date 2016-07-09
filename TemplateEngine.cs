@@ -1,17 +1,18 @@
 using System;
+using HandlebarsDotNet;
 
 namespace BlogCore
 {
     public interface ITemplateEngine
     {
-        string Merge<T>(string template, T data);
+        Func<object, string> CreateMerger(string template);
     }
 
     public class TemplateEngine : ITemplateEngine
     {
-        public string Merge<T>(string template, T data)
+        public Func<object, string> CreateMerger(string template)
         {
-            throw new NotImplementedException();
+            return Handlebars.Compile(template);
         }
     }
 }

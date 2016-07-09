@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Collections.Generic;
 using static System.Console;
 
 namespace BlogCore
@@ -14,30 +13,15 @@ namespace BlogCore
     {
         public void NewPost(string title)
         {
-            var ph = new PostHeader(Config.Author, DateTime.UtcNow, title);
-            string fileName = GetCleanFileName(title);
-            File.WriteAllText(fileName, ph.Serialize());
+            var postHeader = new PostHeader(Config.Author, DateTime.UtcNow, title);
+            string fileName = GetCleanFileName(postHeader);
+            File.WriteAllText(fileName, postHeader.Serialize());
             WriteLine($"code ./{fileName}");
         }
 
-        public string GetCleanFileName(string title)
+        public string GetCleanFileName(PostHeader postHeader)
         {
-            var replacements = new Dictionary<string, string>()
-            {
-                [" "] = "_",
-                ["'"] = "",
-                ["."] = "",
-                [","] = "",
-                ["?"] = "",
-                ["!"] = "",
-            };
-
-            foreach (var kvp in replacements)
-            {
-                title = title.Replace(kvp.Key, kvp.Value);
-            }
-
-            return $"{Config.PostSubDir}/{title}.md";
+            return $"{Config.PostSubDir}/{postHeader.CleanTitle}.md";
         }
     }
 }

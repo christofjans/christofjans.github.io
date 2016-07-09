@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
@@ -23,9 +24,10 @@ namespace BlogCore
 
             // Convert the blog posts.
             string postTemplate = File.ReadAllText(Config.PostTemplate);
+            var merge = templateEngine.CreateMerger(postTemplate);
             foreach (string postFile in Directory.EnumerateFiles(Config.PostSubDir, "*.md"))
             {
-                var post = ConvertPost(postTemplate, postFile);
+                var post = ConvertPost(merge, postFile);
                 var fileName = $"{Config.PostSubDir}/{Path.GetFileNameWithoutExtension(postFile)}.html";
                 File.WriteAllText(fileName, post.HtmlString);
 
@@ -33,11 +35,12 @@ namespace BlogCore
             }
 
             // Generate index.html
-            string indexTemplate = File.ReadAllText(Config.IndexTemplate);
-            File.WriteAllText("index.html", templateEngine.Merge(indexTemplate, allPosts));
+            /*string indexTemplate = File.ReadAllText(Config.IndexTemplate);
+            merge = templateEngine.CreateMerger(indexTemplate);
+            File.WriteAllText("index.html", merge(allPosts));*/
         }
 
-        private Post ConvertPost(string postTemplate, string postFile)
+        private Post ConvertPost(Func<object, string> merge, string postFile)
         {
             var lines = File.ReadAllLines(postFile);
 
@@ -50,7 +53,7 @@ namespace BlogCore
 
             // Merge html with the template.
             var post = new Post(postHeader, htmlString); // temporary post object whose html still needs to be merged with the template
-            htmlString = templateEngine.Merge(postTemplate, post);
+            htmlString = merge(post);
 
             // Return the final post.
             return new Post(postHeader, htmlString);

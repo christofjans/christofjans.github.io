@@ -7,7 +7,8 @@
   },
   "dependencies": {
     "Newtonsoft.Json": "9.0.1",
-    "Markdown": "1.14.7"
+    "Markdown": "1.14.7",
+    "Handlebars.NetStandard": "1.0.0-dotnet-core-rtm1"
   },
   "frameworks": {
     "netcoreapp1.0": {

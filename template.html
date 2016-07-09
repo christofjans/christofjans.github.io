@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>{{metaData.title}}</title>
+        <title>{{Header.Title}}</title>
         <link rel="stylesheet" href="styles/solarized_dark.css">
         <link rel="alternate" type="application/rss+xml" title="The Blog of Christof Jans" href="http://blog.christofjans.com/rss.xml"/>        
         <style>
@@ -151,20 +151,20 @@ blockquote
             </p>
             <p>
                 Published on:<br />
-                <i>{{friendlyDate}}</i>
+                <i>{{FriendlyDate}}</i>
             </p>
             <div class="g-plusone" ></div><br/>
             <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
         </aside>
         <div id="content">
-            {{{htmlString}}}
+            {{{HtmlString}}}
             <br/>
             <hr/>
             <!-- google+ comments -->
             <script src="https://apis.google.com/js/plusone.js">
             </script>
             <div class="g-comments"
-                data-href="{{{url}}}"
+                data-href="{{{Url}}}"
                 data-width="642"
                 data-first_party_property="BLOGGER"
                 data-view_type="FILTERED_POSTMOD">
