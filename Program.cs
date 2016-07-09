@@ -7,7 +7,6 @@ namespace BlogCore
         public static void Main(string[] args)
         {
             var argParser = Services.GetInstance<IArgParser>();
-            var postGenerator = Services.GetInstance<INewPostGenerator>();
 
             argParser.ParseArgs(args, error: (ex)=>
             {
