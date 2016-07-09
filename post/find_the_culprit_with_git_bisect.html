@@ -139,7 +139,10 @@ blockquote
 
         </style>
     </head>
-    <body data-ng-app>
+    <body data-ng-app='postapp'>
+        <!-- ng -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        
         <div id="nav">
             <a href="index.html" >blog</a>
             <a href="rss.xml" >feed <img src="rss.png" /></a>
@@ -153,8 +156,8 @@ blockquote
                 Published on:<br />
                 <i>2014-03-18</i>
             </p>
-            <div class="g-plusone" ></div><br/>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+            <!--<div class="g-plusone" ></div><br/>-->
+            <!--<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>-->
         </aside>
         <div id="content">
             <h1>Find the culprit with git bisect</h1>
@@ -163,7 +166,7 @@ blockquote
 
 <p>You could test every commit since the last known good commit, but if there are many commits this could take a long time. Suppose the last know good commit is called <code>good</code>, the first known bad commit is called <code>bad</code> and there are 100 commits in the interval <code>[good,bad]</code>. A linear search has to test (on average) 50 commits.  </p>
 
-<p>Luckily git has a built in tool to help you with this: <code>git bisect</code>. The bisect algorithm will find the commit that is in the 'middle' of <code>good</code> and <code>bad</code> (let's call it <code>middle</code>). If <code>middle</code> is determined to be good the interval is halved to <code>[middle, bad]</code>, otherwise it's halved to <code>[good, middle]</code>. Since the interval is halved each time, only $$log_2 100 \approx 7$$ tests are needed.  </p>
+<p>Luckily git has a built in tool to help you with this: <code>git bisect</code>. The bisect algorithm will find the commit that is in the 'middle' of <code>good</code> and <code>bad</code> (let's call it <code>middle</code>). If <code>middle</code> is determined to be good the interval is halved to <code>[middle, bad]</code>, otherwise it's halved to <code>[good, middle]</code>. Since the interval is halved each time, only $%log_2 100 \approx 7%$ tests are needed.  </p>
 
 <p>Here is how it works:</p>
 
@@ -220,16 +223,6 @@ git bisect run test_commit.sh
 
 <p>Hope this helps.</p>
             <br/>
-            <hr/>
-            <!-- google+ comments -->
-            <script src="https://apis.google.com/js/plusone.js">
-            </script>
-            <div class="g-comments"
-                data-href="http://blog.christofjans.com/post/Find_the_culprit_with_git_bisect"
-                data-width="642"
-                data-first_party_property="BLOGGER"
-                data-view_type="FILTERED_POSTMOD">
-            </div>
         </div>
 
 
@@ -240,42 +233,9 @@ git bisect run test_commit.sh
         <!-- mathjax -->
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
-                extensions: ["tex2jax.js"],
-                jax: ["input/TeX", "output/HTML-CSS"],
-                tex2jax: {
-                    inlineMath: [ ['$$','$$'] ],
-                    displayMath: [ ['$$$','$$$'] ],
-                    processEscapes: true
-                }
+                tex2jax: {inlineMath: [['$%','%$']]}
             });
         </script>
-        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-
-        <!-- twitter -->
-        <script>
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-        </script>
-
-        <!-- google+ -->
-        <script type="text/javascript">
-            //google+
-            window.___gcfg = {
-                lang: 'en-US'
-            };
-
-            (function() {
-                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                po.src = 'https://apis.google.com/js/plusone.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-            })();
-        </script>
-
-        <!-- ng -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-
-        <!-- google analytics -->
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createEement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-47695498-1', 'christofjans.com');ga('send', 'pageview');
-        </script>        
+        <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
     </body>
 </html>

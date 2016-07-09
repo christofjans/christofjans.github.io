@@ -139,7 +139,10 @@ blockquote
 
         </style>
     </head>
-    <body data-ng-app>
+    <body data-ng-app='postapp'>
+        <!-- ng -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        
         <div id="nav">
             <a href="index.html" >blog</a>
             <a href="rss.xml" >feed <img src="rss.png" /></a>
@@ -153,23 +156,23 @@ blockquote
                 Published on:<br />
                 <i>2013-07-14</i>
             </p>
-            <div class="g-plusone" ></div><br/>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+            <!--<div class="g-plusone" ></div><br/>-->
+            <!--<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>-->
         </aside>
         <div id="content">
             <h1>Test</h1>
 
-<p>This is a test post of my new "blog-engine". The world clearly does not have enough blog engines so I decided to write my own. It uses git, node.js and markdown on the client and is hosted on Amazon S3.</p>
+<p>This is a test post of my new "blog-engine". The world clearly does not have enough blog engines so I decided to write my own. It uses git, .NET Core and Markdown on the client and is hosted on GitHub.</p>
 
 <h2>Math</h2>
 
 <p>Math is awesome. I don't know if I'll be doing a lot of math blogging, but I would like to have the option. I'm using the awesome <a href="http://www.mathjax.org">MathJax</a> library to render math.</p>
 
-<p>This is inline math: $$\Delta =\sum<em>{i=1}^N w</em>i (x_i - \bar{x})^2$$ .  </p>
+<p>This is inline math: $%ax^2 + bx + c = 0%$ .  </p>
 
 <p>This is a math paragraph:  </p>
 
-<p>$$$\Delta =\sum<em>{i=1}^N w</em>i (x_i - \bar{x})^2$$$  </p>
+<p>$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</p>
 
 <h2>Code</h2>
 
@@ -212,32 +215,24 @@ for (i=0;i&lt;100;i++) {
 
 <p>Javascript animation test:</p>
 
-<div data-ng-controller='controller' style="font-family:monospaced;background-color:lightgray">{{dateTime}}</div>
+<div data-ng-controller='postCtrl' style="font-family:monospaced;background-color:lightgray">{{dateTime}}</div>
 
 <hr />
 
 <p>This is the end of this test post.  </p>
 
 <script type="text/javascript">
-    var controller = function ($scope, $timeout) {
+    var app = angular.module('postapp', []);
+
+    app.controller('postCtrl', function ($scope, $timeout) {
         var updateDate = function () {
             $scope.dateTime = (new Date()).toString();
             $timeout(updateDate, 300);
         };
         updateDate();
-    };
+    });
 </script>
             <br/>
-            <hr/>
-            <!-- google+ comments -->
-            <script src="https://apis.google.com/js/plusone.js">
-            </script>
-            <div class="g-comments"
-                data-href="http://blog.christofjans.com/post/Test"
-                data-width="642"
-                data-first_party_property="BLOGGER"
-                data-view_type="FILTERED_POSTMOD">
-            </div>
         </div>
 
 
@@ -248,42 +243,9 @@ for (i=0;i&lt;100;i++) {
         <!-- mathjax -->
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
-                extensions: ["tex2jax.js"],
-                jax: ["input/TeX", "output/HTML-CSS"],
-                tex2jax: {
-                    inlineMath: [ ['$$','$$'] ],
-                    displayMath: [ ['$$$','$$$'] ],
-                    processEscapes: true
-                }
+                tex2jax: {inlineMath: [['$%','%$']]}
             });
         </script>
-        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-
-        <!-- twitter -->
-        <script>
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-        </script>
-
-        <!-- google+ -->
-        <script type="text/javascript">
-            //google+
-            window.___gcfg = {
-                lang: 'en-US'
-            };
-
-            (function() {
-                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                po.src = 'https://apis.google.com/js/plusone.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-            })();
-        </script>
-
-        <!-- ng -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-
-        <!-- google analytics -->
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createEement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-47695498-1', 'christofjans.com');ga('send', 'pageview');
-        </script>        
+        <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
     </body>
 </html>

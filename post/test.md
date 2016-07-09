@@ -2,17 +2,17 @@
 
 # Test
 
-This is a test post of my new "blog-engine". The world clearly does not have enough blog engines so I decided to write my own. It uses git, node.js and markdown on the client and is hosted on Amazon S3.
+This is a test post of my new "blog-engine". The world clearly does not have enough blog engines so I decided to write my own. It uses git, .NET Core and Markdown on the client and is hosted on GitHub.
 
 ## Math
 
 Math is awesome. I don't know if I'll be doing a lot of math blogging, but I would like to have the option. I'm using the awesome [MathJax](http://www.mathjax.org) library to render math.
 
-This is inline math: $$\Delta =\sum_{i=1}^N w_i (x_i - \bar{x})^2$$ .  
+This is inline math: $%ax^2 + bx + c = 0%$ .  
 
 This is a math paragraph:  
 
-$$$\Delta =\sum_{i=1}^N w_i (x_i - \bar{x})^2$$$  
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 
 ## Code 
 
@@ -54,18 +54,20 @@ Quote test:
 
 Javascript animation test:
 
-<div data-ng-controller='controller' style="font-family:monospaced;background-color:lightgray">{{dateTime}}</div>
+<div data-ng-controller='postCtrl' style="font-family:monospaced;background-color:lightgray">{{dateTime}}</div>
 
 ------
 
 This is the end of this test post.  
 
 <script type="text/javascript">
-    var controller = function ($scope, $timeout) {
+    var app = angular.module('postapp', []);
+
+    app.controller('postCtrl', function ($scope, $timeout) {
         var updateDate = function () {
             $scope.dateTime = (new Date()).toString();
             $timeout(updateDate, 300);
         };
         updateDate();
-    };
+    });
 </script>

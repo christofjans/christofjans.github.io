@@ -6,7 +6,7 @@ Suppose you are developing your application, merrily committing code when sudden
 
 You could test every commit since the last known good commit, but if there are many commits this could take a long time. Suppose the last know good commit is called `good`, the first known bad commit is called `bad` and there are 100 commits in the interval `[good,bad]`. A linear search has to test (on average) 50 commits.  
 
-Luckily git has a built in tool to help you with this: `git bisect`. The bisect algorithm will find the commit that is in the 'middle' of `good` and `bad` (let's call it `middle`). If `middle` is determined to be good the interval is halved to `[middle, bad]`, otherwise it's halved to `[good, middle]`. Since the interval is halved each time, only $$log_2 100 \approx 7$$ tests are needed.  
+Luckily git has a built in tool to help you with this: `git bisect`. The bisect algorithm will find the commit that is in the 'middle' of `good` and `bad` (let's call it `middle`). If `middle` is determined to be good the interval is halved to `[middle, bad]`, otherwise it's halved to `[good, middle]`. Since the interval is halved each time, only $%log_2 100 \approx 7%$ tests are needed.  
 
 Here is how it works:
 
