@@ -26,12 +26,14 @@ namespace BlogCore
             foreach (string postFile in Directory.EnumerateFiles(".", "*.md"))
             {
                 var post = ConvertPost(postTemplate, postFile);
-            
                 File.WriteAllText($"{Path.GetFileNameWithoutExtension(postFile)}.html", post.HtmlString);
+
+                allPosts.Add(post);
             }
 
             // Generate index.html
             string indexTemplate = File.ReadAllText(Config.IndexTemplate);
+            File.WriteAllText("index.html", templateEngine.Merge(indexTemplate, allPosts));
         }
 
         private Post ConvertPost(string postTemplate, string postFile)
