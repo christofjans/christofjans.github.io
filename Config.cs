@@ -5,5 +5,7 @@ namespace BlogCore
         public static string Author = "Christof Jans";
         public static string PostTemplate = "posttemplate.cshtml";
         public static string IndexTemplate = "indextemplate.cshtml";
+
+        public static string PostSubDir = "post";
     }
 }

@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
+using static System.Console;
 
 namespace BlogCore
 {
@@ -13,18 +15,29 @@ namespace BlogCore
         public void NewPost(string title)
         {
             var ph = new PostHeader(Config.Author, DateTime.Now, title);
-
-            File.WriteAllText(GetCleanFileName(title), ph.Serialize());
+            string fileName = GetCleanFileName(title);
+            File.WriteAllText(fileName, ph.Serialize());
+            WriteLine($"generated {fileName}");
         }
 
         public string GetCleanFileName(string title)
         {
-            title = title
-                .Replace(' ', '_')
-                .Replace(',', '_')
-                // ...
-                ;
-            return $"{title}.md";
+            var replacements = new Dictionary<string, string>()
+            {
+                [" "] = "_",
+                ["'"] = "",
+                ["."] = "",
+                [","] = "",
+                ["?"] = "",
+                ["!"] = "",
+            };
+
+            foreach (var kvp in replacements)
+            {
+                title = title.Replace(kvp.Key, kvp.Value);
+            }
+
+            return $"{Config.PostSubDir}/{title}.md";
         }
     }
 }

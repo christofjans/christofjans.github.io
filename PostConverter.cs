@@ -23,10 +23,11 @@ namespace BlogCore
 
             // Convert the blog posts.
             string postTemplate = File.ReadAllText(Config.PostTemplate);
-            foreach (string postFile in Directory.EnumerateFiles(".", "*.md"))
+            foreach (string postFile in Directory.EnumerateFiles(Config.PostSubDir, "*.md"))
             {
                 var post = ConvertPost(postTemplate, postFile);
-                File.WriteAllText($"{Path.GetFileNameWithoutExtension(postFile)}.html", post.HtmlString);
+                var fileName = $"{Config.PostSubDir}/{Path.GetFileNameWithoutExtension(postFile)}.html";
+                File.WriteAllText(fileName, post.HtmlString);
 
                 allPosts.Add(post);
             }
