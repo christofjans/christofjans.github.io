@@ -1,3 +1,5 @@
 .vscode/*
 bin/*
 obj/*
+post/*.html
+index.html
