@@ -1,5 +1,5 @@
 using System;
-using HandlebarsDotNet;
+using RazorLight;
 
 namespace BlogCore
 {
@@ -10,9 +10,31 @@ namespace BlogCore
 
     public class TemplateEngine : ITemplateEngine
     {
+        public TemplateEngine()
+        {
+            engine = new RazorLightEngine();
+        }
+
         public Func<object, string> CreateMerger(string template)
         {
-            return Handlebars.Compile(template);
+            return (dynamic model) =>
+            {
+                try
+                {
+                    return this.engine.ParseString(template, model);
+                }
+                catch (RazorLightCompilationException ex)
+                {
+                    foreach (var err in ex.CompilationErrors)
+                    {
+                        Console.WriteLine(err);
+                    }
+                    throw;
+                }
+            };
         }
+
+
+        private RazorLightEngine engine;
     }
 }

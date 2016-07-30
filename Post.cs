@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Html;
+
 namespace BlogCore
 {
     public class Post
@@ -27,6 +29,11 @@ namespace BlogCore
             {
                 return $"{Config.UrlPrefix}/{Header.CleanTitle}.html";
             }
+        }
+
+        public HtmlString Raw(string s)
+        {
+            return new HtmlString(s);
         }
     }
 }

@@ -3,12 +3,13 @@
   "buildOptions": {
     "debugType": "portable",
     "emitEntryPoint": true,
-    "compile": "*.cs"
+    "compile": "*.cs",
+    "preserveCompilationContext": true
   },
   "dependencies": {
     "Newtonsoft.Json": "9.0.1",
     "Markdown": "1.14.7",
-    "Handlebars.NetStandard": "1.0.0-dotnet-core-rtm1"
+    "RazorLight": "0.0.1"
   },
   "frameworks": {
     "netcoreapp1.0": {

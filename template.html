@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>{{Header.Title}}</title>
+        <title>@Model.Header.Title</title>
         <link rel="stylesheet" href="styles/solarized_dark.css">
         <link rel="alternate" type="application/rss+xml" title="The Blog of Christof Jans" href="http://blog.christofjans.com/rss.xml"/>        
         <style>
@@ -76,7 +76,7 @@ pre code
     float: right;
 }
 
-@media screen and (max-device-width: 640px), print
+@@media screen and (max-device-width: 640px), print
 {
     aside
     {
@@ -101,7 +101,7 @@ pre code
     }
 }
 
-@media print
+@@media print
 {
     #nav
     {
@@ -154,13 +154,13 @@ blockquote
             </p>
             <p>
                 Published on:<br />
-                <i>{{FriendlyDate}}</i>
+                <i>@Model.FriendlyDate</i>
             </p>
             <!--<div class="g-plusone" ></div><br/>-->
             <!--<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>-->
         </aside>
         <div id="content">
-            {{{HtmlString}}}
+            @Model.Raw(Model.HtmlString)
             <br/>
         </div>
 

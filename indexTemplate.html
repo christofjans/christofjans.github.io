@@ -27,12 +27,6 @@ h1, h2, h3, h4, h5, h6
     font-family: "Myriad Pro", "Lucida Grande", "Lucida Sans Unicode", verdana
 }
 
-/*code
-{
-    background-color: rgb(0,43,54);
-    color: rgb(131, 148, 150);
-}*/
-
 pre code
 {
     width: 90%;
@@ -117,11 +111,11 @@ blockquote
         </aside>
         <div id="content">
             <h1>The Blog of Christof Jans</h1>
-            {{#AllPosts}}
+            @foreach (var post in Model.AllPosts) {
                 <p>
-                    <a href="{{Url}}">{{Header.Title}}</a><span style="float:right;">{{FriendlyDate}}</span><br/>
+                    <a href="{{Url}}">@post.Header.Title</a><span style="float:right;">@post.FriendlyDate</span><br/>
                 </p>
-            {{/AllPosts}}
+            }
         </div>
     </body>
 </html>
