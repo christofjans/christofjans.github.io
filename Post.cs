@@ -4,11 +4,13 @@ namespace BlogCore
     {
         public PostHeader Header {get;}
         public string HtmlString {get;}
+        public string Description {get;}
 
-        public Post(PostHeader postHeader, string htmlString)
+        public Post(PostHeader postHeader, string htmlString, string description)
         {
             this.Header = postHeader;
             this.HtmlString = htmlString;
+            this.Description = description;
         }
 
         public string FriendlyDate
@@ -23,7 +25,7 @@ namespace BlogCore
         {
             get
             {
-                return $"{Config.UrlPrefix}/{Header.CleanTitle}";
+                return $"{Config.UrlPrefix}/{Header.CleanTitle}.html";
             }
         }
     }

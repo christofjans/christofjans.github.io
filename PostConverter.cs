@@ -35,9 +35,13 @@ namespace BlogCore
             }
 
             // Generate index.html
-            /*string indexTemplate = File.ReadAllText(Config.IndexTemplate);
+            string indexTemplate = File.ReadAllText(Config.IndexTemplate);
             merge = templateEngine.CreateMerger(indexTemplate);
-            File.WriteAllText("index.html", merge(allPosts));*/
+            string indexFileName = $"index.html";
+            File.WriteAllText(indexFileName, merge(new
+            {
+                AllPosts = allPosts
+            }));
         }
 
         private Post ConvertPost(Func<object, string> merge, string postFile)
@@ -47,16 +51,18 @@ namespace BlogCore
             // Retrieve the post header from the first line of the post and the markdown from the rest.
             var postHeader = PostHeader.Deserialize(lines[0]);
             string markdownString = string.Join("\r\n", lines.Skip(1));
+            string descriptionMarkdownString = string.Join("\r\n", lines.Skip(1).Take(10));
 
             // Convert markdown to html.
             string htmlString = markdownConverter.Convert(markdownString);
+            string descriptionHtmlString = markdownConverter.Convert(descriptionMarkdownString);
 
             // Merge html with the template.
-            var post = new Post(postHeader, htmlString); // temporary post object whose html still needs to be merged with the template
+            var post = new Post(postHeader, htmlString, descriptionHtmlString); // temporary post object whose html still needs to be merged with the template
             htmlString = merge(post);
 
             // Return the final post.
-            return new Post(postHeader, htmlString);
+            return new Post(postHeader, htmlString, descriptionHtmlString);
         }
 
         private IMarkdownConverter markdownConverter;
