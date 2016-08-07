@@ -14,7 +14,7 @@ namespace BlogCore
         {
             get
             {
-                string cleanTitle = Title;
+                string cleanTitle = Title.ToLower();
 
                 var replacements = new Dictionary<string, string>()
                 {

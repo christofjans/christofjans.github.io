@@ -10,7 +10,7 @@
             <link>http://blog.christofjans.com</link>
         </image>
         <generator>blogCore RSS Module</generator>
-        <lastBuildDate>Sun, 07 Aug 2016 07:36:51 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 07 Aug 2016 07:39:49 GMT</lastBuildDate>
         <atom:link href="http://blog.christofjans.com/rss.xml" rel="self" type="application/rss+xml" />
         <author><![CDATA[Christof Jans]]></author>
         <item>
@@ -24,8 +24,8 @@
 <p>Luckily git has a built in tool to help you with this: <code>git bisect</code>. The bisect algorithm will find the commit that is in the 'middle' of <code>good</code> and <code>bad</code> (let's call it <code>middle</code>). If <code>middle</code> is determined to be good the interval is halved to <code>[middle, bad]</code>, otherwise it's halved to <code>[good, middle]</code>. Since the interval is halved each time, only $%log_2 100 \approx 7%$ tests are needed.  </p>
 
 <p>Here is how it works:</p>]]></description>
-            <link>http://blog.christofjans.com/post/Find_the_culprit_with_git_bisect.html</link>
-            <guid isPermaLink="true">http://blog.christofjans.com/post/Find_the_culprit_with_git_bisect.html</guid>
+            <link>http://blog.christofjans.com/post/find_the_culprit_with_git_bisect.html</link>
+            <guid isPermaLink="true">http://blog.christofjans.com/post/find_the_culprit_with_git_bisect.html</guid>
             <dc:creator><![CDATA[Christof Jans]]></dc:creator>
             <pubDate>Tue, 18 Mar 2014 01:15:46 GMT</pubDate>
         </item>
@@ -40,8 +40,8 @@
 <p>Math is awesome. I don't know if I'll be doing a lot of math blogging, but I would like to have the option. I'm using the awesome <a href="http://www.mathjax.org">MathJax</a> library to render math.</p>
 
 <p>This is inline math: $%ax^2 + bx + c = 0%$ .  </p>]]></description>
-            <link>http://blog.christofjans.com/post/Test.html</link>
-            <guid isPermaLink="true">http://blog.christofjans.com/post/Test.html</guid>
+            <link>http://blog.christofjans.com/post/test.html</link>
+            <guid isPermaLink="true">http://blog.christofjans.com/post/test.html</guid>
             <dc:creator><![CDATA[Christof Jans]]></dc:creator>
             <pubDate>Sun, 14 Jul 2013 08:17:14 GMT</pubDate>
         </item>
