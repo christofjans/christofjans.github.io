@@ -10,9 +10,8 @@
             <link>http://blog.christofjans.com</link>
         </image>
         <generator>blogCore RSS Module</generator>
-        <lastBuildDate>Sun, 07 Aug 2016 07:39:49 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 07 Aug 2016 07:47:59 GMT</lastBuildDate>
         <atom:link href="http://blog.christofjans.com/rss.xml" rel="self" type="application/rss+xml" />
-        <author><![CDATA[Christof Jans]]></author>
         <item>
             <title><![CDATA[Find the culprit with git bisect]]></title>
             <description><![CDATA[<h1>Find the culprit with git bisect</h1>
