@@ -40,6 +40,14 @@ namespace BlogCore
             }
         }
 
+        public string RssUrl
+        {
+            get
+            {
+                return $"<link>{Url}</link>";
+            }
+        }
+
         public HtmlString Raw(string s)
         {
             return new HtmlString(s);

@@ -17,6 +17,8 @@
         <item>
             <title><![CDATA[@post.Header.Title]]></title>
             <description><![CDATA[@post.Raw(post.DescriptionHtmlString)]]></description>
+            @post.Raw(post.RssUrl)
+            <guid isPermaLink="true">@post.Url</guid>
             <dc:creator><![CDATA[Christof Jans]]></dc:creator>
             <pubDate>@post.RssDate</pubDate>
         </item>
