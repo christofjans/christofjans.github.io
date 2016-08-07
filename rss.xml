@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title><![CDATA[The Blog of Christof Jans]]></title>
+        <description><![CDATA[The Blog of Christof Jans]]></description>
+        <link>http://blog.christofjans.com</link>
+        <image>
+            <url>http://blog.christofjans.com/headshot.png</url>
+            <title>The Blog of Christof Jans</title>
+            <link>http://blog.christofjans.com</link>
+        </image>
+        <generator>blogCore RSS Module</generator>
+        <lastBuildDate>Sun, 07 Aug 2016 06:38:35 GMT</lastBuildDate>
+        <atom:link href="http://blog.christofjans.com/rss.xml" rel="self" type="application/rss+xml" />
+        <author><![CDATA[Christof Jans]]></author>
+        <item>
+            <title><![CDATA[Find the culprit with git bisect]]></title>
+            <description><![CDATA[<h1>Find the culprit with git bisect</h1>
+
+<p>Suppose you are developing your application, merrily committing code when suddenly you realize that a bug has been introduced. You know for sure an earlier commit was correct but the last commit is not. The bug was introduced somewhere between these 2 commits, but where?  </p>
+
+<p>You could test every commit since the last known good commit, but if there are many commits this could take a long time. Suppose the last know good commit is called <code>good</code>, the first known bad commit is called <code>bad</code> and there are 100 commits in the interval <code>[good,bad]</code>. A linear search has to test (on average) 50 commits.  </p>
+
+<p>Luckily git has a built in tool to help you with this: <code>git bisect</code>. The bisect algorithm will find the commit that is in the 'middle' of <code>good</code> and <code>bad</code> (let's call it <code>middle</code>). If <code>middle</code> is determined to be good the interval is halved to <code>[middle, bad]</code>, otherwise it's halved to <code>[good, middle]</code>. Since the interval is halved each time, only $%log_2 100 \approx 7%$ tests are needed.  </p>
+
+<p>Here is how it works:</p>]]></description>
+            <link>http://blog.christofjans.com/post/Find_the_culprit_with_git_bisect.html</link>
+            <guid isPermaLink="true">http://blog.christofjans.com/post/Find_the_culprit_with_git_bisect.html</guid>
+            <dc:creator><![CDATA[Christof Jans]]></dc:creator>
+            <pubDate>Tue, 18 Mar 2014 01:15:46 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Test]]></title>
+            <description><![CDATA[<h1>Test</h1>
+
+<p>This is a test post of my new "blog-engine". The world clearly does not have enough blog engines so I decided to write my own. It uses git, .NET Core and Markdown on the client and is hosted on GitHub.</p>
+
+<h2>Math</h2>
+
+<p>Math is awesome. I don't know if I'll be doing a lot of math blogging, but I would like to have the option. I'm using the awesome <a href="http://www.mathjax.org">MathJax</a> library to render math.</p>
+
+<p>This is inline math: $%ax^2 + bx + c = 0%$ .  </p>]]></description>
+            <link>http://blog.christofjans.com/post/Test.html</link>
+            <guid isPermaLink="true">http://blog.christofjans.com/post/Test.html</guid>
+            <dc:creator><![CDATA[Christof Jans]]></dc:creator>
+            <pubDate>Sun, 14 Jul 2013 08:17:14 GMT</pubDate>
+        </item>
+    </channel>
+</rss>
