@@ -23,6 +23,15 @@ namespace BlogCore
             }
         }
 
+        public string RssDate
+        {
+            get
+            {
+                string rssDate = Header.PubDate.ToString("ddd, dd MMM yyyy hh:mm:ss");
+                return $"{rssDate} GMT";
+            }
+        }
+
         public string Url
         {
             get

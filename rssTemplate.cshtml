@@ -15,12 +15,12 @@
         <author><![CDATA[Christof Jans]]></author>
 @foreach (var post in Model.AllPosts) {
         <item>
-            <title><![CDATA[@post.Title]]></title>
-            <description><![CDATA[@Model.Raw(@post.DescriptionHtml)]]></description>
+            <title><![CDATA[@post.Header.Title]]></title>
+            <description><![CDATA[@post.Raw(post.DescriptionHtmlString)]]></description>
             <link>@post.Url</link>
             <guid isPermaLink="true">@post.Url</guid>
             <dc:creator><![CDATA[Christof Jans]]></dc:creator>
-            <pubDate>@post.Date.ToString("ddd, dd MMM yyyy hh:mm:ss") GMT</pubDate>
+            <pubDate>@post.RssDate</pubDate>
         </item>
 }
     </channel>
