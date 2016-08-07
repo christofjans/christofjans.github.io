@@ -6,13 +6,13 @@ namespace BlogCore
     {
         public PostHeader Header {get;}
         public string HtmlString {get;}
-        public string Description {get;}
+        public string DescriptionHtmlString {get;}
 
-        public Post(PostHeader postHeader, string htmlString, string description)
+        public Post(PostHeader postHeader, string htmlString, string descriptionHtmlString)
         {
             this.Header = postHeader;
             this.HtmlString = htmlString;
-            this.Description = description;
+            this.DescriptionHtmlString = descriptionHtmlString;
         }
 
         public string FriendlyDate

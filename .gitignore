@@ -3,3 +3,4 @@ bin/*
 obj/*
 post/*.html
 index.html
+rss.xml

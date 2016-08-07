@@ -42,6 +42,15 @@ namespace BlogCore
             {
                 AllPosts = allPosts
             }));
+
+            // Generate rss.xml
+            string rssTemplate = File.ReadAllText(Config.RssTemplate);
+            merge = templateEngine.CreateMerger(rssTemplate);
+            string rssFileName = $"rss.xml";
+            File.WriteAllText(rssFileName, merge(new 
+            {
+                AllPosts = allPosts
+            }));
         }
 
         private Post ConvertPost(Func<object, string> merge, string postFile)
