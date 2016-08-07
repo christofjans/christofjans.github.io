@@ -48,6 +48,14 @@ namespace BlogCore
             }
         }
 
+        public string IndexLink
+        {
+            get
+            {
+                return $@"<a href='{Url}'>{Header.Title}</a><span style=""float:right;"">{FriendlyDate}</span><br/>";
+            }
+        }
+
         public HtmlString Raw(string s)
         {
             return new HtmlString(s);

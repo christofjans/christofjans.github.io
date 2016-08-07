@@ -113,7 +113,7 @@ blockquote
             <h1>The Blog of Christof Jans</h1>
             @foreach (var post in Model.AllPosts) {
                 <p>
-                    <a href="{{Url}}">@post.Header.Title</a><span style="float:right;">@post.FriendlyDate</span><br/>
+                    @post.Raw(@post.IndexLink)
                 </p>
             }
         </div>
