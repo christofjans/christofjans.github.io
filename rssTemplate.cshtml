@@ -12,14 +12,14 @@
         <generator>blogCore RSS Module</generator>
         <lastBuildDate>@Model.BuildDate.ToString("ddd, dd MMM yyyy hh:mm:ss") GMT</lastBuildDate>
         <atom:link href="http://blog.christofjans.com/rss.xml" rel="self" type="application/rss+xml" />
-        <author><![CDATA[Christof Jans]]></author>
+        <author><![CDATA[@Model.Author]]></author>
 @foreach (var post in Model.AllPosts) {
         <item>
             <title><![CDATA[@post.Header.Title]]></title>
             <description><![CDATA[@post.Raw(post.DescriptionHtmlString)]]></description>
             @post.Raw(post.RssUrl)
             <guid isPermaLink="true">@post.Url</guid>
-            <dc:creator><![CDATA[Christof Jans]]></dc:creator>
+            <dc:creator><![CDATA[@Model.Author]]></dc:creator>
             <pubDate>@post.RssDate</pubDate>
         </item>
 }

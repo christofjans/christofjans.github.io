@@ -49,6 +49,7 @@ namespace BlogCore
             string rssFileName = $"rss.xml";
             File.WriteAllText(rssFileName, merge(new 
             {
+                Author = Config.Author,
                 BuildDate = DateTime.UtcNow,
                 AllPosts = allPosts
             }));
