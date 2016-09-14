@@ -40,7 +40,7 @@ namespace BlogCore
             string indexFileName = $"index.html";
             File.WriteAllText(indexFileName, merge(new
             {
-                AllPosts = allPosts
+                AllPosts = allPosts.OrderByDescending(post=>post.Header.PubDate)
             }));
 
             // Generate rss.xml
