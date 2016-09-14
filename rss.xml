@@ -10,7 +10,7 @@
             <link>http://blog.christofjans.com</link>
         </image>
         <generator>blogCore RSS Module</generator>
-        <lastBuildDate>Wed, 14 Sep 2016 02:39:16 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 14 Sep 2016 02:41:48 GMT</lastBuildDate>
         <atom:link href="http://blog.christofjans.com/rss.xml" rel="self" type="application/rss+xml" />
         <item>
             <title><![CDATA[Find the culprit with git bisect]]></title>
@@ -34,12 +34,12 @@
 
 <p>I like TypeScript and I like ES6 modules. Typescript has it's own module system but you are not obliged to use it. The future clearly belongs to ES6 modules. If you want to know more about ES6 modules <a href="http://www.2ality.com/2014/09/es6-modules-final.html">this</a> is a good resource.</p>
 
-<p>The problem is that many browser still don't support ES6 modules natively. In this blogpost I will simply document a simple solution that worked for me. I make no claim that it's the "best" solution.</p>
+<p>The problem is that many browser still don't support ES6 modules natively. In this blogpost I will document a simple solution that worked for me. I make no claim that it's the "best" solution.</p>
 
 <p>The solution consists of 2 steps:</p>
 
 <ol>
-<li>transpile TypeScript modules to amd</li>
+<li>transpile TypeScript modules to <code>amd</code></li>
 </ol>]]></description>
             <link>http://blog.christofjans.com/post/loading_typescript_es6_modules.html</link>
             <guid isPermaLink="true">http://blog.christofjans.com/post/loading_typescript_es6_modules.html</guid>

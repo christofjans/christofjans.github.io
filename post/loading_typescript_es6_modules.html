@@ -164,37 +164,33 @@ blockquote
 
 <p>I like TypeScript and I like ES6 modules. Typescript has it's own module system but you are not obliged to use it. The future clearly belongs to ES6 modules. If you want to know more about ES6 modules <a href="http://www.2ality.com/2014/09/es6-modules-final.html">this</a> is a good resource.</p>
 
-<p>The problem is that many browser still don't support ES6 modules natively. In this blogpost I will simply document a simple solution that worked for me. I make no claim that it's the "best" solution.</p>
+<p>The problem is that many browser still don't support ES6 modules natively. In this blogpost I will document a simple solution that worked for me. I make no claim that it's the "best" solution.</p>
 
 <p>The solution consists of 2 steps:</p>
 
 <ol>
-<li>transpile TypeScript modules to amd</li>
-<li>use RequireJS to load the compiled amd module.</li>
+<li>transpile TypeScript modules to <code>amd</code></li>
+<li>use RequireJS to load the compiled <code>amd</code> module.</li>
 </ol>
 
 <h4>1. Transpile TypeScript modules to amd</h4>
 
 <p>While browsers may not yet support es6, TypeScript allows you to transpile the ES6 modules to another module system. Set your <code>module</code> to <code>amd</code> like so: </p>
 
-<p><code>javascript
-{
+<pre><code>{
     "compilerOptions": {
         "target": "es6",
         "module": "amd"         // set module to amd
     }
 }
-</code></p>
+</code></pre>
 
 <h4>2. use RequireJS to load the compiled amd module.</h4>
 
 <p>Now we need a way to load the compiled <code>amd</code> modules in the browser. There are multiple solutions; the one I chose is <a href="http://requirejs.org/">RequireJS</a>. To load your module <code>main.js</code> from the browser, simply add this to your <code>.html</code> file:</p>
 
-<p>```html</p>
-
-<script data-main="./main.js" src="./require.js"></script>
-
-<p>```</p>
+<pre><code>&lt;script data-main="./main.js" src="./require.js"&gt;&lt;/script&gt;
+</code></pre>
 
 <p>That's it. Hope this helps.</p>
             <br/>
