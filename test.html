@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/atom-one-dark.min.css">
+        <title>Test</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="leftnav">
+                <ul>
+                    <li><a href="find_the_culprit_with_git_bisect.html">Find the culprit with git bisect</a></li>
+                    <li><a href="test.html">Test</a></li>
+                </ul>
+            </div>
+            <div id="content">
+                <a href="index.html" >BLOG</a>
+                <a href="about.html" >ABOUT</a>
+                <a href="rss.xml" style="float: right;" >RSS</a>
+                <h1>Test</h1>
+                <div id="pubdate">2013-07-14</div>
+                <p>This is a test post of my new &quot;blog-engine&quot;. The world clearly does not have enough blog engines so I decided to write my own. It uses git, .NET Core and Markdown on the client and is hosted on GitHub.</p>
+<h2>Math</h2>
+<p>Math is awesome. I don't know if I'll be doing a lot of math blogging, but I would like to have the option. I'm using the awesome <a href="http://www.mathjax.org">MathJax</a> library to render math.</p>
+<p>This is inline math: $$[ ax^2 + bx + c = 0 ]$$ .</p>
+<p>This is a math paragraph:</p>
+<p>$$[
+x = {-b \pm \sqrt{b^2-4ac} \over 2a}.
+]$$</p>
+<h2>Code</h2>
+<p>For code styling I'm currently using <a href="https://highlightjs.org/">Highlight.js</a> .</p>
+<p>This is inline code: <code>console.log(&quot;Hello, world !&quot;);</code> .</p>
+<p>This is a code paragraph :</p>
+<pre><code class="language-js">// example of code paragraph
+
+var i;
+
+for (i=0;i&lt;100;i++) {
+    console.log(i);
+}
+</code></pre>
+<h2>Media</h2>
+<p>Image test:</p>
+<img src="beach.jpg" />
+<p>Youtube test:</p>
+<p><iframe src="https://www.youtube.com/embed/rNqpD3Mg9hY" class="youtube" width="500" height="281" frameborder="0" allowfullscreen=""></iframe></p>
+<h2>misc</h2>
+<p>Quote test:</p>
+<blockquote>
+<p>Suppose you were an idiot and suppose you were a member of congress; but I repeat myself .</p>
+<ul>
+<li>Mark Twain</li>
+</ul>
+</blockquote>
+<p>Javascript animation test:</p>
+<div id="datetime"></div>
+<p>Table test:</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>This is the end of this test post.</p>
+<script type="text/javascript">
+    setInterval(function(){
+        var element = document.getElementById('datetime');
+        var d = new Date();
+        element.innerHTML = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
+    }, 400);
+</script>
+
+            </div>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$$[', ']$$']]
+              },
+              svg: {
+                fontCache: 'global'
+              }
+            };
+        </script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>        
+    </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/atom-one-dark.min.css">
+        <title>Find the culprit with git bisect</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="leftnav">
+                <ul>
+                    <li><a href="find_the_culprit_with_git_bisect.html">Find the culprit with git bisect</a></li>
+                    <li><a href="test.html">Test</a></li>
+                </ul>
+            </div>
+            <div id="content">
+                <a href="index.html" >BLOG</a>
+                <a href="about.html" >ABOUT</a>
+                <a href="rss.xml" style="float: right;" >RSS</a>
+                <h1>Find the culprit with git bisect</h1>
+                <div id="pubdate">2014-03-18</div>
+                <p>Suppose you are developing your application, merrily committing code when suddenly you realize that a bug has been introduced. You know for sure an earlier commit was correct but the last commit is not. The bug was introduced somewhere between these 2 commits, but where?</p>
+<p>You could test every commit since the last known good commit, but if there are many commits this could take a long time. Suppose the last know good commit is called <code>good</code>, the first known bad commit is called <code>bad</code> and there are 100 commits in the interval <code>[good,bad]</code>. A linear search has to test (on average) 50 commits.</p>
+<p>Luckily git has a built in tool to help you with this: <code>git bisect</code>. The bisect algorithm will find the commit that is in the 'middle' of <code>good</code> and <code>bad</code> (let's call it <code>middle</code>). If <code>middle</code> is determined to be good the interval is halved to <code>[middle, bad]</code>, otherwise it's halved to <code>[good, middle]</code>. Since the interval is halved each time, only $$[ log_2 100 \approx 7 ]$$ tests are needed.</p>
+<p>Here is how it works:</p>
+<pre><code class="language-sh">&gt; git bisect start
+&gt; git bisect good f45f0a85
+&gt; git bisect bad 08ecc95d
+Bisecting: 100 revisions left to test after this (roughly 7 steps)
+[a167b78a47d89185a6450e41421b7aa936884fe1] added awesome sauce
+</code></pre>
+<p><code>git bisect</code> starts the bisect task. <code>git bisect good f45f0a85</code> tells git the SHA of the last known good commit. <code>git bisect bad 08ecc95d</code> tells git the SHA of the first known bad commit. Git will then check out a commit for you to test. You must inform git whether this commit is good or bad. If it's good, type:</p>
+<pre><code class="language-sh">git bisect good
+</code></pre>
+<p>If it's bad, type:</p>
+<pre><code class="language-sh">git bisect bad
+</code></pre>
+<p>Based on the information you give, git will keep halving the interval until the culprit is found.</p>
+<pre><code class="language-sh">a167b78a47d89185a6450e41421b7aa936884fe1 is the first bad commit
+commit a167b78a47d89185a6450e41421b7aa936884fe1
+Author: Christof Jans &lt;christofjans@someplace.com&gt;
+Date:   Mon Mar 17 21:13:41 2014 -0400
+
+small fix - no need to test
+</code></pre>
+<p>Git has found the culprit and gives you the hash, author date and message of the commit. Finally you can exit bisect mode with:</p>
+<pre><code class="language-sh">git bisect reset
+</code></pre>
+<h2>Automating git bisect</h2>
+<p><code>git bisect</code> drastically reduces the number of commits you have to test but you still have to manually test each commit. Luckily, <code>git bisect</code> supports scripting the test:</p>
+<pre><code class="language-sh">git bisect start bad_commit good_commit
+git bisect run test_commit.sh
+</code></pre>
+<p>In this example <code>test_commit.sh</code> is a bash shell script to test if the commit is good or bad. If the commit is good the script should return 0, otherwise it should return a non-zero integer. Now <code>git bisect</code> will run fully automated. If you don't like writing bash shell scripts, you can just call a windows exe from the script:</p>
+<pre><code class="language-sh">&quot;c:\path_to_exe\test_commit.exe&quot;
+</code></pre>
+<p>Again, the .exe should return 0 if the commit is good and a non-zero integer if the commit is bad.</p>
+<h2>Conclusion</h2>
+<p>Git bisect is a powerful tool to find bad commits quickly. It can be run in interactive mode or fully automated. Also note that if you find yourself using <code>git bisect</code> all the time, you might want to consider integrating unit tests in your build ;)</p>
+<p>Hope this helps.</p>
+
+            </div>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$$[', ']$$']]
+              },
+              svg: {
+                fontCache: 'global'
+              }
+            };
+        </script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>        
+    </body>
+</html>
