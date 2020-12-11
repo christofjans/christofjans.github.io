@@ -8,10 +8,10 @@
     <language>en</language>
     <item>
       <title>The proper care and disposing of one's service provider</title>
-      <link>https://blog.christofjans.com/The+proper+care+and+disposing+of+your+service+provider.html</link>
+      <link>https://blog.christofjans.com/The%20proper%20care%20and%20disposing%20of%20your%20service%20provider.html</link>
       <description>Recently, I was working on an application which logged information to the Console. The issue I ran into is that the logging information would not always show up in the console; sometimes it would, sometimes it wouldn't.</description>
       <author>christofjans@gmail.com (Christof Jans)</author>
-      <guid>https://blog.christofjans.com/The+proper+care+and+disposing+of+your+service+provider.html</guid>
+      <guid>https://blog.christofjans.com/The proper care and disposing of your service provider.html</guid>
       <pubDate>Thu, 10 Dec 2020 00:00:00 GMT</pubDate>
     </item>
     <item>
