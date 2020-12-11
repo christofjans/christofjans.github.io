@@ -7,6 +7,14 @@
     <description>occasionally helpful</description>
     <language>en</language>
     <item>
+      <title>The proper care and disposing of one's service provider</title>
+      <link>https://blog.christofjans.com/The+proper+care+and+disposing+of+your+service+provider.html</link>
+      <description>todo</description>
+      <author>christofjans@gmail.com (Christof Jans)</author>
+      <guid>https://blog.christofjans.com/The+proper+care+and+disposing+of+your+service+provider.html</guid>
+      <pubDate>Thu, 10 Dec 2020 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Find the culprit with git bisect</title>
       <link>https://blog.christofjans.com/find_the_culprit_with_git_bisect.html</link>
       <description>todo</description>

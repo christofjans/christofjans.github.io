@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/atom-one-dark.min.css">
+        <title>The proper care and disposing of one's service provider</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="leftnav">
+                <ul>
+                    <li><a href="The proper care and disposing of your service provider.html">The proper care and disposing of one's service provider</a></li>
+                    <li><a href="find_the_culprit_with_git_bisect.html">Find the culprit with git bisect</a></li>
+                    <li><a href="test.html">Test</a></li>
+                </ul>
+            </div>
+            <div id="content">
+                <a href="index.html" >BLOG</a>
+                <a href="about.html" >ABOUT</a>
+                <a href="rss.xml" style="float: right;" >RSS</a>
+                <h1>The proper care and disposing of one's service provider</h1>
+                <div id="pubdate">2020-12-10</div>
+                <p>Recently, I was working on an application which logged information to the Console. The issue I ran into is that the logging information would not always show up in the console; sometimes it would, sometimes it wouldn't.</p>
+<p>Simplified, my code was as follows:</p>
+<pre><code class="language-cs">using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+var serviceProvider = CreateServiceProvider();
+var myService = serviceProvider.GetService&lt;MyService&gt;();
+
+myService.DoWork();
+
+static ServiceProvider CreateServiceProvider()
+{
+    var serviceCollection = new ServiceCollection();
+    serviceCollection.AddLogging(loggingBuilder=&gt;loggingBuilder.AddConsole());
+    serviceCollection.AddSingleton&lt;MyService&gt;();
+
+    return serviceCollection.BuildServiceProvider();
+}
+
+class MyService
+{
+    public MyService(ILogger&lt;MyService&gt; logger) =&gt; this.logger = logger;
+
+    public void DoWork() =&gt; logger.LogInformation(&quot;working ...&quot;);
+
+    private ILogger&lt;MyService&gt; logger;
+}
+</code></pre>
+<p>As you can see, calling <code>myService.DoWork();</code> is supposed to log <code>working ...</code> to the console. And yet it only worked intermittently.</p>
+<p>After some Googling, I found out that the logging output to the Console is buffered. You only see the output if the buffer is flushed. My application would exit before the flush happened. Of course, I could wait for the flush to happen by adding a <code>Thread.Sleep</code> but that's hacky and error-prone.</p>
+<p>The <em>correct</em> way is to <code>Dispose</code> of the service provider. This will Dispose all it's contained services, causing the buffer to get flushed.</p>
+<p>So - using the C#8 <code>using</code> syntax - we get:</p>
+<pre><code>using var serviceProvider = CreateServiceProvider();
+</code></pre>
+<p>And voila, it works :</p>
+<pre><code>info: MyService[0]
+      working ...
+</code></pre>
+<p>Hope this helps.</p>
+
+            </div>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$$[', ']$$']]
+              },
+              svg: {
+                fontCache: 'global'
+              }
+            };
+        </script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>        
+    </body>
+</html>
