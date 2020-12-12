@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/atom-one-dark.min.css">
+        <title>Calling Javascript from Blazor</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="leftnav">
+                <ul>
+                    <li><a href="calljsfromblazor.html">Calling Javascript from Blazor</a></li>
+                    <li><a href="The proper care and disposing of your service provider.html">The proper care and disposing of one's service provider</a></li>
+                    <li><a href="find_the_culprit_with_git_bisect.html">Find the culprit with git bisect</a></li>
+                    <li><a href="test.html">Test</a></li>
+                </ul>
+            </div>
+            <div id="content">
+                <a href="index.html" >BLOG</a>
+                <a href="about.html" >ABOUT</a>
+                <a href="rss.xml" style="float: right;" >RSS</a>
+                <h1>Calling Javascript from Blazor</h1>
+                <div id="pubdate">2020-12-12</div>
+                <p>Blazor Webassembly is a technology that allows you to write web applications in C#/.NET . But sometimes you need to call into Javascript.</p>
+<p>Consider the following scenario:</p>
+<pre><code class="language-cs">@page &quot;/demo&quot;
+
+&lt;input type=&quot;button&quot; value=&quot;Delete&quot; @onclick=&quot;Delete&quot; /&gt;
+
+@code {
+    public async Task Delete()
+    {
+       // delete something
+    }
+}
+</code></pre>
+<p>When clicking the button, the <code>Delete</code> method will be called which - presumably - will delete something.</p>
+<p>Now suppose we wanted to add a confirmation dialog. In javascript there exists a <code>confirm</code> method: <code>if confirm(&quot;Are you sure ?&quot;) {...}</code>. But how would we call that method from Blazor ?</p>
+<p>Enter <code>IJSRuntime</code> :</p>
+<pre><code class="language-cs">@page &quot;/demo&quot;
+@inject IJSRuntime js;
+
+&lt;input type=&quot;button&quot; value=&quot;Delete&quot; @onclick=&quot;Delete&quot; /&gt;
+
+@code {
+    public async Task Delete()
+    {
+        if (await js.InvokeAsync&lt;bool&gt;(&quot;confirm&quot;, &quot;Are you sure&quot;))
+        {
+            // delete something
+        }
+    }
+}
+</code></pre>
+<p>We inject the <code>IJSRuntime</code> service with the <code>@inject</code> directive. In the <code>Delete</code> method, we invoke the <code>confirm</code> method as follows:</p>
+<pre><code class="language-cs">js.InvokeAsync&lt;bool&gt;(&quot;confirm&quot;, &quot;Are you sure&quot;)
+</code></pre>
+<p>The signature for <code>InvokeAsync</code> is :</p>
+<pre><code class="language-cs">ValueTask&lt;T&gt; IJSRuntime.InvokeAsync&lt;T&gt;(string identifier, object?[]? args)
+</code></pre>
+<p>The <code>identifier</code> parameter is the Javascript method you want to call (&quot;confirm&quot; in our case). Next are the arguments you want to pass to that Javascrit method.</p>
+<p>There is a lot more to say about blazor/js interop. If you are interested you can read about it <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet?view=aspnetcore-5.0">here</a> .</p>
+<p>Hope this helps.</p>
+
+            </div>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+            MathJax = {
+              tex: {
+                inlineMath: [['$$[', ']$$']]
+              },
+              svg: {
+                fontCache: 'global'
+              }
+            };
+        </script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>        
+    </body>
+</html>

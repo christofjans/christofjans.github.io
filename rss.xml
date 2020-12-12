@@ -7,6 +7,14 @@
     <description>occasionally helpful</description>
     <language>en</language>
     <item>
+      <title>Calling Javascript from Blazor</title>
+      <link>https://blog.christofjans.com/calljsfromblazor.html</link>
+      <description>Blazor Webassembly is a technology that allows you to write web applications in C#/.NET . But sometimes you need to call into Javascript.</description>
+      <author>christofjans@gmail.com (Christof Jans)</author>
+      <guid>https://blog.christofjans.com/calljsfromblazor.html</guid>
+      <pubDate>Sat, 12 Dec 2020 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>The proper care and disposing of one's service provider</title>
       <link>https://blog.christofjans.com/The%20proper%20care%20and%20disposing%20of%20your%20service%20provider.html</link>
       <description>Recently, I was working on an application which logged information to the Console. The issue I ran into is that the logging information would not always show up in the console; sometimes it would, sometimes it wouldn't.</description>
