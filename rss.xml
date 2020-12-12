@@ -4,7 +4,7 @@
     <atom:link rel="self" type="application/rss+xml" href="https://blog.christofjans.com/rss.xml" />
     <title>The blog of Christof Jans</title>
     <link>https://blog.christofjans.com/rss.xml</link>
-    <description>occasionally helpful</description>
+    <description>Occasionally Helpful</description>
     <language>en</language>
     <item>
       <title>Calling Javascript from Blazor</title>

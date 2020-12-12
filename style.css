@@ -48,17 +48,27 @@ a:hover {
     filter: brightness(50%);
 }
 
-@media screen and (max-width:900px), print {
+#bottomnav {
+    display: none;
+}
+
+@media screen and (max-width:900px) {
     #leftnav {
         display: none;
     }
     #content {
         width: 90%;
     }
+    #bottomnav {
+        display: block;
+    }
 }
 
 @media print {
     #topnav {
+        display: none;
+    }
+    #leftnav {
         display: none;
     }
 }
