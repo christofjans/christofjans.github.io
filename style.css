@@ -16,7 +16,6 @@ h1, h2, h3, h4, h5 {
     width: 700px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 19px;
-    /*flex: 0 4 700px;*/
 }
 
 #content #pubdate {
@@ -49,10 +48,11 @@ a:hover {
     filter: brightness(50%);
 }
 
-/*@media screen and (max-width: 910px) {
-    #leftnav
-    {
+@media screen and (max-width:900px) {
+    #leftnav {
         display: none;
-        visibility: hidden;
     }
-}*/
+    #content {
+        width: 90%;
+    }
+}
