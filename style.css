@@ -13,9 +13,10 @@ h1, h2, h3, h4, h5 {
 }
 
 #content {
-    width: 700px;
+    flex-basis: 700px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 19px;
+    flex-grow: 0px;
 }
 
 #content #pubdate {
@@ -48,8 +49,7 @@ a:hover {
     filter: brightness(50%);
 }
 
-@media screen and (max-width: 900px)
-{
+@media screen and (max-width: 910px) {
     #leftnav
     {
         display: none;
