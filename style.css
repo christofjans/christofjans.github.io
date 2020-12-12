@@ -52,6 +52,15 @@ a:hover {
     display: none;
 }
 
+table {
+    border-collapse: collapse;
+    /*width: 100%;*/
+}
+
+tr {
+    border-bottom: 1px solid #ccc;
+}
+
 @media screen and (max-width:900px) {
     #leftnav {
         display: none;
