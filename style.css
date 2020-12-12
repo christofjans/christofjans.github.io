@@ -13,10 +13,10 @@ h1, h2, h3, h4, h5 {
 }
 
 #content {
-    flex-basis: 700px;
+    width: 700px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 19px;
-    flex-grow: 0px;
+    /*flex: 0 4 700px;*/
 }
 
 #content #pubdate {
@@ -49,10 +49,10 @@ a:hover {
     filter: brightness(50%);
 }
 
-@media screen and (max-width: 910px) {
+/*@media screen and (max-width: 910px) {
     #leftnav
     {
         display: none;
         visibility: hidden;
     }
-}
+}*/
