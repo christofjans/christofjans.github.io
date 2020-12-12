@@ -17,11 +17,13 @@
                 </ul>
             </div>
             <div id="content">
-                <a href="index.html" >BLOG</a>
-                <a href="about.html" >ABOUT</a>
-                <a href="rss.xml" style="float: right;" >RSS</a>
+                <span id="topnav">
+                    <a href="index.html" >BLOG</a>
+                    <a href="about.html" >ABOUT</a>
+                    <a href="rss.xml" style="float: right;" >RSS</a>
+                </span>
                 <h1>The proper care and disposing of one's service provider</h1>
-                <div id="pubdate">2020-12-10</div>
+                <div id="pubdate">by <a href="about.html">Christof Jans</a> | 2020-12-10</div>
                 <p>Recently, I was working on an application which logged information to the Console. The issue I ran into is that the logging information would not always show up in the console; sometimes it would, sometimes it wouldn't.</p>
 <p>Simplified, my code was as follows:</p>
 <pre><code class="language-cs">using Microsoft.Extensions.DependencyInjection;

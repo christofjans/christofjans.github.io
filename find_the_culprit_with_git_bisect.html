@@ -17,11 +17,13 @@
                 </ul>
             </div>
             <div id="content">
-                <a href="index.html" >BLOG</a>
-                <a href="about.html" >ABOUT</a>
-                <a href="rss.xml" style="float: right;" >RSS</a>
+                <span id="topnav">
+                    <a href="index.html" >BLOG</a>
+                    <a href="about.html" >ABOUT</a>
+                    <a href="rss.xml" style="float: right;" >RSS</a>
+                </span>
                 <h1>Find the culprit with git bisect</h1>
-                <div id="pubdate">2014-03-18</div>
+                <div id="pubdate">by <a href="about.html">Christof Jans</a> | 2014-03-18</div>
                 <p>Suppose you are developing your application, merrily committing code when suddenly you realize that a bug has been introduced. You know for sure an earlier commit was correct but the last commit is not. The bug was introduced somewhere between these 2 commits, but where?</p>
 <p>You could test every commit since the last known good commit, but if there are many commits this could take a long time. Suppose the last know good commit is called <code>good</code>, the first known bad commit is called <code>bad</code> and there are 100 commits in the interval <code>[good,bad]</code>. A linear search has to test (on average) 50 commits.</p>
 <p>Luckily git has a built in tool to help you with this: <code>git bisect</code>. The bisect algorithm will find the commit that is in the 'middle' of <code>good</code> and <code>bad</code> (let's call it <code>middle</code>). If <code>middle</code> is determined to be good the interval is halved to <code>[middle, bad]</code>, otherwise it's halved to <code>[good, middle]</code>. Since the interval is halved each time, only $$[ log_2 100 \approx 7 ]$$ tests are needed.</p>

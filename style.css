@@ -48,11 +48,17 @@ a:hover {
     filter: brightness(50%);
 }
 
-@media screen and (max-width:900px) {
+@media screen and (max-width:900px), print {
     #leftnav {
         display: none;
     }
     #content {
         width: 90%;
+    }
+}
+
+@media print {
+    #topnav {
+        display: none;
     }
 }

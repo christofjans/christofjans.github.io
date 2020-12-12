@@ -17,11 +17,13 @@
                 </ul>
             </div>
             <div id="content">
-                <a href="index.html" >BLOG</a>
-                <a href="about.html" >ABOUT</a>
-                <a href="rss.xml" style="float: right;" >RSS</a>
+                <span id="topnav">
+                    <a href="index.html" >BLOG</a>
+                    <a href="about.html" >ABOUT</a>
+                    <a href="rss.xml" style="float: right;" >RSS</a>
+                </span>
                 <h1>Calling Javascript from Blazor</h1>
-                <div id="pubdate">2020-12-12</div>
+                <div id="pubdate">by <a href="about.html">Christof Jans</a> | 2020-12-12</div>
                 <p>Blazor Webassembly is a technology that allows you to write web applications in C#/.NET . But sometimes you need to call into Javascript.</p>
 <p>Consider the following scenario:</p>
 <pre><code class="language-cs">@page &quot;/demo&quot;
