@@ -59,7 +59,7 @@ table {
 
 tr {
     border-bottom: 1px solid #ccc;
-}
+}   
 
 blockquote {
     border-left: 1px solid rgb(212,74,52);
@@ -71,11 +71,6 @@ blockquote {
 }
 
 img {
-    max-width: 100%;
-    height: auto;
-}
-
-iframe {
     max-width: 100%;
     height: auto;
 }
