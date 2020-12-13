@@ -70,6 +70,16 @@ blockquote {
     margin-inline-end: 0px;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+iframe {
+    max-width: 100%;
+    height: auto;
+}
+
 @media screen and (max-width:900px) {
     #leftnav {
         display: none;
