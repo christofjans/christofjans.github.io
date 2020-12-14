@@ -55,7 +55,7 @@ for (i=0;i&lt;100;i++) {
 <p><strong>Mark Twain:</strong> Suppose you were an idiot and suppose you were a member of congress; but I repeat myself .</p>
 </blockquote>
 <p>Javascript test:</p>
-<div id="datetime"></div>
+<p><canvas id="animdemo" width="512" height="128" ></canvas></p>
 <p>Table test:</p>
 <table>
 <thead>
@@ -76,16 +76,14 @@ for (i=0;i&lt;100;i++) {
 </tbody>
 </table>
 <p>This is text that has been <mark>marked</mark> .</p>
-<p>2<sup>10</sup> = 1024</p>
-<p>H<sub>2</sub>O is a liquid .</p>
+<p>superscript test: 2<sup>10</sup> = 1024</p>
+<p>subscript test: H<sub>2</sub>O is a liquid .</p>
 <p>This is text that has been <del>deleted</del> .</p>
 <p>This is the end of this test post.</p>
-<script type="text/javascript">
-    setInterval(function(){
-        var element = document.getElementById('datetime');
-        var d = new Date();
-        element.innerHTML = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
-    }, 400);
+<script type="module" >
+    import {run} from './animdemo.js'
+
+    run('animdemo');
 </script>
 
                 <div id="bottomnav">
