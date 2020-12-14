@@ -38,7 +38,7 @@
 }
 </code></pre>
 <p>When clicking the button, the <code>Delete</code> method will be called which - presumably - will delete something.</p>
-<p>Now suppose we wanted to add a confirmation dialog. In javascript there exists a <code>confirm</code> method: <code>if confirm(&quot;Are you sure ?&quot;) {...}</code>. But how would we call that method from Blazor ?</p>
+<p>Now suppose we wanted to add a confirmation dialog. In javascript there exists a <code>confirm</code> method: <code>if (confirm(&quot;Are you sure ?&quot;)) {...}</code>. But how would we call that method from Blazor ?</p>
 <p>Enter <code>IJSRuntime</code> :</p>
 <pre><code class="language-cs">@page &quot;/demo&quot;
 @inject IJSRuntime js;
