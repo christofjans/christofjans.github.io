@@ -25,14 +25,14 @@ function drawClock(ctx) {
         hours -= 12;
     hours += minutes / 60;
     hours *= 5;
-    drawArm(ctx, seconds, 2, 120, '#ff0000');
     drawArm(ctx, minutes, 5, 100, '#000000');
-    drawArm(ctx, hours, 10, 80, '#000000');
+    drawArm(ctx, hours, 5, 80, '#000000');
+    drawArm(ctx, seconds, 2, 120, '#ff0000');
 }
 function drawArm(ctx, seconds, width, height, fill) {
     ctx.fillStyle = fill;
     ctx.resetTransform();
     ctx.translate(128, 128);
     ctx.rotate(seconds * 2 * Math.PI / 60);
-    ctx.fillRect(-width / 2, -height, width / 2, height);
+    ctx.fillRect(-width / 2, -height, width, height);
 }
