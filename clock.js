@@ -24,7 +24,7 @@ function drawClock(ctx) {
     ctx.clearRect(0, 0, 256, 256);
     drawNotches(ctx);
     drawArm(ctx, minutes, 5, 100, '#000000');
-    drawArm(ctx, hours, 5, 80, '#000000');
+    drawArm(ctx, hours, 5, 70, '#000000');
     drawArm(ctx, seconds, 2, 120, '#ff0000');
 }
 function drawArm(ctx, seconds, width, height, fill) {
