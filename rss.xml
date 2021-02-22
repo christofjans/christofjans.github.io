@@ -7,6 +7,14 @@
     <description>Occasionally Helpful</description>
     <language>en</language>
     <item>
+      <title>Converting Markdown to PDF</title>
+      <link>https://blog.christofjans.com/Converting_Markdown_to_PDF.html</link>
+      <description>Recently, I had to convert a large number of Markdown files to PDF. Obviously, I wanted to automate this.</description>
+      <author>christofjans@gmail.com (Christof Jans)</author>
+      <guid>https://blog.christofjans.com/Converting_Markdown_to_PDF.html</guid>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Calling Javascript from Blazor</title>
       <link>https://blog.christofjans.com/calljsfromblazor.html</link>
       <description>Blazor Webassembly is a technology that allows you to write web applications in C#/.NET . But sometimes you need to call into Javascript.</description>

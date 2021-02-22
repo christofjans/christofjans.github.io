@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/atom-one-dark.min.css">
+        <title>Converting Markdown to PDF</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="leftnav">
+                <ul>
+                    <li><a href="Converting_Markdown_to_PDF.html">Converting Markdown to PDF</a></li>
+                    <li><a href="calljsfromblazor.html">Calling Javascript from Blazor</a></li>
+                    <li><a href="The proper care and disposing of your service provider.html">The proper care and disposing of one's service provider</a></li>
+                    <li><a href="find_the_culprit_with_git_bisect.html">Find the culprit with git bisect</a></li>
+                    <li><a href="test.html">Test</a></li>
+                </ul>
+            </div>
+            <div id="content">
+                <span id="topnav">
+                    <a href="index.html" >BLOG</a>
+                    <a href="about.html" >ABOUT</a>
+                    <a href="rss.xml" style="float: right;" >RSS</a>
+                </span>
+                <h1>Converting Markdown to PDF</h1>
+                <div id="pubdate">by <a href="about.html">Christof Jans</a> | 2021-02-21</div>
+                <p>Recently, I had to convert a large number of Markdown files to PDF. Obviously, I wanted to automate this.</p>
+<p>After doing some research I settled on the following approach:</p>
+<ol>
+<li>Convert Markdown to HTML using powershell.</li>
+<li>Convert HTML to PDF using headless chrome.</li>
+</ol>
+<h2>Converting Markdown to HTML</h2>
+<p>Apparently, powershell now has a <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/convertfrom-markdown?view=powershell-7.1"><code>ConvertFrom-Markdown</code></a> commandlet (yay!). This returns an object which contains the abstract syntax tree but also, the <code>Html</code> property.</p>
+<p>Converting Markdown to HTML is as simple as</p>
+<pre><code class="language-powershell">(ConvertFrom-Markdown input.md).Html | out-file output.html
+</code></pre>
+<h2>Converting HTML to PDF</h2>
+<p><a href="https://developers.google.com/web/updates/2017/04/headless-chrome">Headless Chrome</a> is a way to run chrome without a user interface. The command to print HTML to PDF is:</p>
+<pre><code class="language-powershell">&amp; chrome --headless --disable-gpu --print-to-pdf-no-header --print-to-pdf=E:\output.pdf  E:\out.html
+</code></pre>
+<p>That is a mouthful so let's go over it step by step</p>
+<ul>
+<li><code>chrome</code> : you should replace this with the path to <code>chrome.exe</code>.</li>
+<li><code>--headless</code> : this tells Chrome to run in headless mode</li>
+<li><code>--disable-gpu</code> : needed on windows</li>
+<li><code>--print-to-pdf-no-header</code> : this prevents chrome from adding headers and footers</li>
+<li><code>--print-to-pdf</code> : the path to the outputted PDF file</li>
+<li>The last argument is the path to the HTML input file</li>
+</ul>
+<p>I've noticed that headless chrome only works with absolute paths, not relative paths. You can use <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/resolve-path?view=powershell-7.1"><code>Resolve-Path</code></a> to transform a relative path into an absolute path.</p>
+<p>The final script is this:</p>
+<pre><code>param($markdownpath)
+
+$markdownpath = (Resolve-Path $markdownpath).Path
+$htmlpath = &quot;$markdownpath.html&quot;
+$pdfpath = &quot;$markdownpath.pdf&quot;
+
+(ConvertFrom-Markdown $markdownpath).Html | out-file $htmlpath
+
+&amp; &quot;$($Env:ProgramFiles) (x86)\Google\Chrome\Application\chrome.exe&quot;  --headless --disable-gpu --print-to-pdf-no-header --print-to-pdf=$pdfpath  $htmlpath
+</code></pre>
+
+                <div id="bottomnav">
+                    <hr/>
+                    <ul>
+                        <li><a href="Converting_Markdown_to_PDF.html">Converting Markdown to PDF</a></li>
+                        <li><a href="calljsfromblazor.html">Calling Javascript from Blazor</a></li>
+                        <li><a href="The proper care and disposing of your service provider.html">The proper care and disposing of one's service provider</a></li>
+                        <li><a href="find_the_culprit_with_git_bisect.html">Find the culprit with git bisect</a></li>
+                        <li><a href="test.html">Test</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>
