@@ -7,6 +7,14 @@
     <description>Occasionally Helpful</description>
     <language>en</language>
     <item>
+      <title>JwtAuthLib</title>
+      <link>https://blog.christofjans.com/JwtAuthLib.html</link>
+      <description>JwtAuthLib is a .NET library to help implement authentication for WebApi projects without using .Net Core identity. As the name implies it uses Jwt bearer tokens.</description>
+      <author>christofjans@gmail.com (Christof Jans)</author>
+      <guid>https://blog.christofjans.com/JwtAuthLib.html</guid>
+      <pubDate>Sat, 01 May 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Converting Markdown to PDF</title>
       <link>https://blog.christofjans.com/Converting_Markdown_to_PDF.html</link>
       <description>Recently, I had to convert a large number of Markdown files to PDF. Obviously, I wanted to automate this.</description>

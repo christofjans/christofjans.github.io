@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/atom-one-dark.min.css">
+        <title>JwtAuthLib</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="leftnav">
+                <ul>
+                    <li><a href="JwtAuthLib.html">JwtAuthLib</a></li>
+                    <li><a href="Converting_Markdown_to_PDF.html">Converting Markdown to PDF</a></li>
+                    <li><a href="calljsfromblazor.html">Calling Javascript from Blazor</a></li>
+                    <li><a href="The proper care and disposing of your service provider.html">The proper care and disposing of one's service provider</a></li>
+                    <li><a href="find_the_culprit_with_git_bisect.html">Find the culprit with git bisect</a></li>
+                    <li><a href="test.html">Test</a></li>
+                </ul>
+            </div>
+            <div id="content">
+                <span id="topnav">
+                    <a href="index.html" >BLOG</a>
+                    <a href="about.html" >ABOUT</a>
+                    <a href="rss.xml" style="float: right;" >RSS</a>
+                </span>
+                <h1>JwtAuthLib</h1>
+                <div id="pubdate">by <a href="about.html">Christof Jans</a> | 2021-05-01</div>
+                <p>JwtAuthLib is a .NET library to help implement authentication for WebApi projects without using .Net Core identity. As the name implies it uses Jwt bearer tokens.</p>
+<p><a href="https://github.com/christofjans/jwtauthlib">The implementation</a> of this library relies heavily on <a href="https://weblog.west-wind.com/posts/2021/Mar/09/Role-based-JWT-Tokens-in-ASPNET-Core">this blog post by Rick Strahl</a> (and blatantly steals some code; thanks Rick !).</p>
+<h2>Interfaces</h2>
+<p>There are 2 main interfaces:</p>
+<ul>
+<li><code>IUserAuthenticator</code> : this is an interface that <em>you</em> implement. It accepts a username and password and returns the authenticated user object.</li>
+<li><code>IAuthenticator</code> : the implementation is provided by JwtAuthLib (<code>JwtAuthLib.Authenticator</code>). It accepts a username/password, an <code>IUserAuthenticator</code> interface and a <code>JwtConfig</code> object. It returns the Jwt bearer token.</li>
+</ul>
+<h2>JwtConfig</h2>
+<p>The most important property of <code>JwtConfig</code> is <code>SigningKey</code> (all other properties can be left at their default values). <strong>The signing key must be kept secret.</strong> If an attacker got a hold of your signing key they could create Jwt tokens and gain access to your site.</p>
+<h2>Setup</h2>
+<p>In <code>StartUp.cs</code> add the following code in <code>ConfigureServices</code> :</p>
+<pre><code class="language-cs">using JwtAuthLib;
+
+services.AddJwtAuth(jwtConfig);
+</code></pre>
+<p>You would typically get the jwtConfig from <code>Configuration</code>.</p>
+<p>In <code>Configure</code> you need to add :</p>
+<pre><code class="language-cs">app.UseAuthentication();
+app.UseAuthorization();
+</code></pre>
+<p>These calls need to be added <em>after</em> routing and <em>before</em> endpoint setup.</p>
+<h2>Logging in</h2>
+<p>In your login controller you need to add the following code :</p>
+<pre><code class="language-cs">private readonly IUserAuthenticator userAuthenticator;
+private readonly IAuthenticator authenticator;
+
+[AllowAnonymous]
+[HttpPost]
+[Route(&quot;authenticate&quot;)]        
+public string Authenticate(LoginUser loginUser)
+{
+    return authenticator.Authenticate(loginUser, userAuthenticator, jwtConfig);
+}
+</code></pre>
+<p><code>userAuthenticator</code> is an instance of <code>IUserAuthenticator</code> . This is an implementation that <em>you</em> provide to authenticate a username/password. Typically, your implementation would check a database (make sure you don't store passwords in cleartext; properly salting and hashing of passwords is outside the scope of JwtAuthLib).</p>
+<p><code>authenticator</code> is an instance of <code>IAuthenticator</code>. This was set up with DI in <code>ConfigureServices</code>.</p>
+<p>The <code>jwtConfig</code> object must be an object with the <em>same property values</em> as the one you passed in to <code>services.AddJwtAuth</code> in <code>ConfigureServices</code>.</p>
+<h2>Client</h2>
+<p>Once you have retrieved the Jwt bearer token (by calling the Authenticate method of your login controller) you use it by adding the following header to all you Http calls:</p>
+<pre><code class="language-http">Authorization: Bearer &lt;YourJwtBearerToken&gt;
+</code></pre>
+<p>Example :</p>
+<pre><code class="language-http">GET http://acme.com/getmessage
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjaHJpc3RvZiIsImp0aSI6ImRjNjcyNTExLWEyYWYtNDJmNi1hZGVkLTVlN2VmZjE0NTI0NyIsInVzZXJuYW1lIjoiY2hyaXN0b2YiLCJkaXNwbGF5bmFtZSI6ImNocmlzdG9mIiwicm9sZSI6WyJhZG1pbiIsInJvbGUxIl0sImV4cCI6MTYxODc4OTgxMywiaXNzIjoiaHR0cHM6Ly9teXNpdGUuY29tIiwiYXVkIjoiaHR0cHM6Ly9teXNpdGUuY29tIn0.hkHJWUuDUbqH3WKf-N24Bj9JZpcNSi__PQKVFlhbwaI
+</code></pre>
+<p>Don't forget the word <code>Bearer</code> before your token.</p>
+
+                <div id="bottomnav">
+                    <hr/>
+                    <ul>
+                        <li><a href="JwtAuthLib.html">JwtAuthLib</a></li>
+                        <li><a href="Converting_Markdown_to_PDF.html">Converting Markdown to PDF</a></li>
+                        <li><a href="calljsfromblazor.html">Calling Javascript from Blazor</a></li>
+                        <li><a href="The proper care and disposing of your service provider.html">The proper care and disposing of one's service provider</a></li>
+                        <li><a href="find_the_culprit_with_git_bisect.html">Find the culprit with git bisect</a></li>
+                        <li><a href="test.html">Test</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </body>
+</html>
