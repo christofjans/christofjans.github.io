@@ -5,7 +5,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/atom-one-dark.min.css">
-        <title>The proper care and disposing of one's service provider</title>
+        <title>C# REPL in Windows Terminal</title>
     </head>
     <body>
         <div id="container">
@@ -26,46 +26,31 @@
                     <a href="about.html" >ABOUT</a>
                     <a href="rss.xml" style="float: right;" >RSS</a>
                 </span>
-                <h1>The proper care and disposing of one's service provider</h1>
-                <div id="pubdate">by <a href="about.html">Christof Jans</a> | 2020-12-10</div>
-                <p>Recently, I was working on an application which logged information to the Console. The issue I ran into is that the logging information would not always show up in the console; sometimes it would, sometimes it wouldn't.</p>
-<p>Simplified, my code was as follows:</p>
-<pre><code class="language-cs">using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
-var serviceProvider = CreateServiceProvider();
-var myService = serviceProvider.GetService&lt;MyService&gt;();
-
-myService.DoWork();
-
-static ServiceProvider CreateServiceProvider()
-{
-    var serviceCollection = new ServiceCollection();
-    serviceCollection.AddLogging(loggingBuilder=&gt;loggingBuilder.AddConsole());
-    serviceCollection.AddSingleton&lt;MyService&gt;();
-
-    return serviceCollection.BuildServiceProvider();
-}
-
-class MyService
-{
-    public MyService(ILogger&lt;MyService&gt; logger) =&gt; this.logger = logger;
-
-    public void DoWork() =&gt; logger.LogInformation(&quot;working ...&quot;);
-
-    private ILogger&lt;MyService&gt; logger;
-}
+                <h1>C# REPL in Windows Terminal</h1>
+                <div id="pubdate">by <a href="about.html">Christof Jans</a> | 2021-06-19</div>
+                <p>In this blogpost I will show you how to set up a C# REPL in Windows Terminal.</p>
+<h2>What is a C# REPL?</h2>
+<p>REPL stands for Read/Evaluate/Print loop. The user types in a command, the command gets evaluated, and the output is returned to the user. A C# REPL uses C# as the command language.</p>
+<p>This is different from the traditional way of using C#. Traditionally the user would write a C# program, compile it, and run it. A REPL is interactive, you get instant feedback.</p>
+<h2>Many C# REPLs</h2>
+<p>There are quite a few C# REPLs out there.</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=2xilWlL7X5A">C# interactive</a> : This is a windows in Visual Studio.</li>
+<li>csi.exe : this is the engine behind C# interactive. It can be run in a terminal but it's Windows only.</li>
+<li><a href="https://github.com/filipw/dotnet-script">dotnet-script</a> : This allows you to run .csx files but it also contains a REPL. It does not have intellisense or syntax highlighting.</li>
+</ul>
+<p>In this blogpost, I want to focus on <a href="https://github.com/waf/CSharpRepl">CSharpRepl</a> : it's a cross platform (.Net 5) C# REPL that supports syntax highlighting and intellisense.</p>
+<h2>CSharpRepl</h2>
+<p>CSharpRepl is installed as a global tool :</p>
+<pre><code>dotnet tool install -g csharprepl
 </code></pre>
-<p>As you can see, calling <code>myService.DoWork();</code> is supposed to log <code>working ...</code> to the console. And yet it only worked intermittently.</p>
-<p>After some Googling, I found out that the logging output to the Console is buffered. You only see the output if the buffer is flushed. My application would exit before the flush happened. Of course, I could wait for the flush to happen by adding a <code>Thread.Sleep</code> but that's hacky and error-prone.</p>
-<p>The <em>correct</em> way is to <code>Dispose</code> of the service provider. This will Dispose all it's contained services, causing the buffer to get flushed.</p>
-<p>So - using the C#8 <code>using</code> syntax - we get:</p>
-<pre><code>using var serviceProvider = CreateServiceProvider();
-</code></pre>
-<p>And voila, it works :</p>
-<pre><code>info: MyService[0]
-      working ...
-</code></pre>
+<p>Once installed all you have to do to invoke it is type <code>csharrepl</code> and you're good to go:</p>
+<p><img src="csharprepl.png" alt="" /></p>
+<h2>Integrating with Windows Terminal</h2>
+<p>In Windows Terminal, click CTRL+, to bring up the settings tab. Click &quot;Add new&quot;, name it C# and type in <code>csharprepl</code> as the command line option:</p>
+<p><img src="csharprepl2.png" alt="" /></p>
+<p>And you're good to go.</p>
+<p><img src="csharprepl3.png" alt="" /></p>
 <p>Hope this helps.</p>
 
                 <div id="bottomnav">

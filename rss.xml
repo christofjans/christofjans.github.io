@@ -7,6 +7,14 @@
     <description>Occasionally Helpful</description>
     <language>en</language>
     <item>
+      <title>C# REPL in Windows Terminal</title>
+      <link>https://blog.christofjans.com/Csharp_REPL_in_Windows_Terminal.html</link>
+      <description>In this blogpost I will show you how to set up a C# REPL in Windows Terminal.</description>
+      <author>christofjans@gmail.com (Christof Jans)</author>
+      <guid>https://blog.christofjans.com/Csharp_REPL_in_Windows_Terminal.html</guid>
+      <pubDate>Sat, 19 Jun 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>JwtAuthLib</title>
       <link>https://blog.christofjans.com/JwtAuthLib.html</link>
       <description>JwtAuthLib is a .NET library to help implement authentication for WebApi projects without using .Net Core identity. As the name implies it uses Jwt bearer tokens.</description>
