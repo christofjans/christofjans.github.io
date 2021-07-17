@@ -56,7 +56,7 @@
 <p><strong>Warning</strong> : I've noticed that headless chrome only works with absolute paths, not relative paths. You can use <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/resolve-path?view=powershell-7.1"><code>Resolve-Path</code></a> to transform a relative path into an absolute path.</p>
 </blockquote>
 <p>The final script is this:</p>
-<pre><code>param($markdownpath)
+<pre><code class="language-powershell">param($markdownpath)
 
 $markdownpath = (Resolve-Path $markdownpath).Path
 $htmlpath = &quot;$markdownpath.html&quot;
@@ -84,7 +84,7 @@ $pdfpath = &quot;$markdownpath.pdf&quot;
             </div>
         </div>
 
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+        <script src="./highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
     </body>
 </html>
