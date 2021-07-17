@@ -31,11 +31,11 @@
                 <p>This is a test post of my new &quot;blog-engine&quot;. The world clearly does not have enough blog engines so I decided to write my own. It uses git, .NET Core and Markdown on the client and is hosted on GitHub.</p>
 <h2>Math</h2>
 <p>Math is awesome. I don't know if I'll be doing a lot of math blogging, but I would like to have the option. I'm using the awesome <a href="http://www.mathjax.org">MathJax</a> library to render math.</p>
-<p>This is inline math: $$[ ax^2 + bx + c = 0 ]$$ .</p>
+<p>This is inline math: $ax^2 + bx + c = 0$ .</p>
 <p>This is a math paragraph:</p>
-<p>$$[
-x = {-b \pm \sqrt{b^2-4ac} \over 2a}.
-]$$</p>
+<p>$$
+x = {-b \pm \sqrt{b^2-4ac} \over 2a}
+$$</p>
 <h2>Code</h2>
 <p>For code styling I'm currently using <a href="https://highlightjs.org/">Highlight.js</a> .</p>
 <p>This is inline code: <code>console.log(&quot;Hello, world !&quot;);</code> .</p>
@@ -111,7 +111,7 @@ for (i=0;i&lt;100;i++) {
             <script>
                 MathJax = {
                 tex: {
-                    inlineMath: [['$$[', ']$$']]
+                    inlineMath: [['$', '$']]
                 },
                 svg: {
                     fontCache: 'global'
