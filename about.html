@@ -65,5 +65,22 @@
 
         <script src="./highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
+        <script>
+const codeBlocks = document.querySelectorAll('pre code');
+for (let block of codeBlocks) {
+    const copyText = "copy ⧉";
+    const copyButton = document.createElement('a');
+    copyButton.setAttribute('style', 'text-decoration: none; float: right; color: #282c34; font-size: 0.8em; cursor: pointer;');
+    copyButton.innerHTML = copyText;
+    copyButton.onclick = function() {
+        navigator.clipboard.writeText(block.innerText);
+        copyButton.innerHTML = 'copied to clipboard';
+        setTimeout(function() {
+            copyButton.innerHTML = copyText;
+        }, 2000);
+    }
+    block.after(copyButton);
+}
+        </script>
     </body>
 </html>

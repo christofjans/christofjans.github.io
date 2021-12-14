@@ -119,5 +119,22 @@ for (i=0;i&lt;100;i++) {
                 };
             </script>
             <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>        
+        <script>
+const codeBlocks = document.querySelectorAll('pre code');
+for (let block of codeBlocks) {
+    const copyText = "copy ⧉";
+    const copyButton = document.createElement('a');
+    copyButton.setAttribute('style', 'text-decoration: none; float: right; color: #282c34; font-size: 0.8em; cursor: pointer;');
+    copyButton.innerHTML = copyText;
+    copyButton.onclick = function() {
+        navigator.clipboard.writeText(block.innerText);
+        copyButton.innerHTML = 'copied to clipboard';
+        setTimeout(function() {
+            copyButton.innerHTML = copyText;
+        }, 2000);
+    }
+    block.after(copyButton);
+}
+        </script>
     </body>
 </html>
