@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>gif looper</title>
+        <style>
+html {
+    background-color: black;
+    height: 100%;
+}
+body {
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+}
+.container img {
+    width: auto;
+    height: 100%;
+}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <img id='img1' src="./octocat.gif"/>
+        </div>
+
+        <script type="module" src="./giflooper.js"></script>
+        <script type="module">
+import {run} from './giflooper.js';
+run();
+        </script>
+    </body>
+</html>
