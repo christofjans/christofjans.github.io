@@ -125,6 +125,7 @@ for (let block of codeBlocks) {
     const copyText = "copy ⧉";
     const copyButton = document.createElement('a');
     copyButton.setAttribute('style', 'text-decoration: none; float: right; color: #282c34; font-size: 0.8em; cursor: pointer;');
+    copyButton.classList.add("noprint");
     copyButton.innerHTML = copyText;
     copyButton.onclick = function() {
         navigator.clipboard.writeText(block.innerText);

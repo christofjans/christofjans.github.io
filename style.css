@@ -94,4 +94,7 @@ img {
     #leftnav {
         display: none;
     }
+    .noprint {
+        display: none;
+    }
 }
