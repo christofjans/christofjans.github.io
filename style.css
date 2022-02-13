@@ -97,4 +97,7 @@ img {
     .noprint {
         display: none;
     }
+    body {
+        background-color: white;
+    }
 }
