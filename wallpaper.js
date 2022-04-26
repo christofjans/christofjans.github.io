@@ -13,12 +13,45 @@ export function initMainDateWidget(maindateid) {
     if (maindateWidget === null)
         return;
     let date = new Date();
-    var dd = padLeft(date.getDate());
-    var mm = padLeft(date.getMonth() + 1); //January is 0!
-    var yyyy = date.getFullYear();
-    let today = `${yyyy}-${mm}-${dd}`;
+    let dayOfWeekIdx = date.getDay();
+    let dayOfMonth = date.getDate();
+    let monthIdx = date.getMonth();
+    let today = `${days[dayOfWeekIdx]}, ${months[monthIdx]} ${dayOfMonth}`;
     maindateWidget.innerHTML = today;
+}
+export function initUtcTimeWidget(utctimeid) {
+    let utctimeWidget = document.getElementById(utctimeid);
+    setInterval(function () {
+        if (utctimeWidget === null)
+            return;
+        let date = new Date();
+        let msg = `UTC ${padLeft(date.getUTCHours())}:${padLeft(date.getUTCMinutes())}`;
+        utctimeWidget.innerHTML = msg;
+    }, 400);
 }
 function padLeft(i) {
     return i < 10 ? `0${i}` : `${i}`;
 }
+const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+];
+const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+];
