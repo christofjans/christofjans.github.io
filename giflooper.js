@@ -2,7 +2,8 @@ export function run() {
     const images = [
         "./octocat.gif",
         "./matrix-code.gif",
-        "./droid.gif",
+        //"./droid.gif",
+        "./atat.gif",
         "./gandalf.gif",
         "./controller.gif",
         "./pacman.gif",
