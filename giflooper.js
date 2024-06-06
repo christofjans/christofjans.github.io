@@ -3,7 +3,7 @@ export function run() {
         "./octocat.gif",
         "./matrix-code.gif",
         //"./droid.gif",
-        "./atat.gif",
+        "./starwars.gif",
         "./gandalf.gif",
         "./controller.gif",
         "./pacman.gif",
