@@ -10,7 +10,8 @@ export function run() {
         "./mancubus.gif",
         "./space-invaders.gif",
         "./spacemarine.gif",
-        "./cat.gif"
+        "./cat.gif",
+        "./tintin.gif",
         //"./yin-and-yang.gif",
     ];
     const delayBetweenImages = 5000;
