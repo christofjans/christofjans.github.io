@@ -103,6 +103,65 @@ for (let block of codeBlocks) {
     }
     block.after(copyButton);
 }
+
+// Function to create and display the larger image
+function showImage(imageUrl) {
+    // Create an overlay div
+    const overlay = document.createElement('div');
+    overlay.id = 'image-overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.zIndex = '1000';
+
+    // Create the image element
+    const largeImage = document.createElement('img');
+    largeImage.src = imageUrl;
+    largeImage.style.maxWidth = '90%';
+    largeImage.style.maxHeight = '90%';
+    largeImage.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+    largeImage.style.borderRadius = '8px';
+
+    // Create the close button
+    const closeButton = document.createElement('div');
+    closeButton.innerText = 'X';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '20px';
+    closeButton.style.right = '20px';
+    closeButton.style.color = 'white';
+    closeButton.style.fontSize = '24px';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.fontWeight = 'bold';
+
+    // Add click event to close the overlay
+    closeButton.addEventListener('click', function () {
+        document.body.removeChild(overlay);
+    });
+
+    // Append the image and close button to the overlay
+    overlay.appendChild(largeImage);
+    overlay.appendChild(closeButton);
+
+    // Append the overlay to the body
+    document.body.appendChild(overlay);
+}
+
+// Add click event listeners to all images
+window.addEventListener('DOMContentLoaded', function () {
+    const images = document.querySelectorAll('img');
+    images.forEach(function (image) {
+        image.addEventListener('click', function () {
+            showImage(image.src);
+        });
+    });
+});
+
         </script>
     </body>
 </html>
