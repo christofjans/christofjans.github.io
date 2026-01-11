@@ -23,9 +23,44 @@ body {
     width: auto;
     height: 100%;
 }
+
+#clock {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 9999;
+    color: white;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    text-align: right;
+    padding: 8px 10px;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+}
+#clock .time {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+#clock .time .ampm {
+    font-size: 0.65em;
+    font-weight: 500;
+}
+#clock .date {
+    font-size: 0.8em;
+    line-height: 1.1;
+    opacity: 0.9;
+    margin-top: 2px;
+}
         </style>
     </head>
     <body>
+        <div id="clock">
+            <div class="time">
+                <span id="clock-time"></span> <span id="clock-ampm" class="ampm"></span>
+            </div>
+            <div id="clock-date" class="date"></div>
+        </div>
+
         <div class="container">
             <img id='img1' src="./octocat.gif"/>
         </div>
